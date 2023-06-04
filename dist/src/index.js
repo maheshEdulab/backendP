@@ -28,11 +28,9 @@ app.get('/read', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.json({ record, Messege: "Welcome" });
 }));
 app.get('/verfy', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const person = yield databse_1.default.manager.findOneBy(entity_1.Persons, { UserName: JSON.stringify(req.query.UserName), Password: JSON.stringify(req.query.Password) });
-    if (person) {
-        console.log(person);
-        res.json({ person, Messege: "Record get" });
-    }
+    console.log(req.query);
+    const person = yield databse_1.default.manager.findOneBy(entity_1.Persons, { UserName: req.query.UserName, Password: req.query.Password });
+    res.json(person === null || person === void 0 ? void 0 : person.Token);
 }));
 app.post('/create', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     jsonwebtoken_1.default.sign(req.body, req.body.Password, { expiresIn: '2' }, (err, token) => __awaiter(void 0, void 0, void 0, function* () {
