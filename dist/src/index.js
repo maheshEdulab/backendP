@@ -23,6 +23,7 @@ app.use(express_1.default.json());
 databse_1.default.initialize().then(() => {
     console.log("DataBase connected ");
 });
+<<<<<<< HEAD
 app.post('/create', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         console.log(req.body);
@@ -45,6 +46,16 @@ app.post('/create', (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     catch (error) {
         res.json({ error, Messege: "Someting went worong in createing data " });
     }
+=======
+app.get('/read', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const record = yield entity_1.Persons.find();
+    res.json({ record, Messege: "Welcome" });
+}));
+app.get('/verfy', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(req.query);
+    const person = yield databse_1.default.manager.findOneBy(entity_1.Persons, { UserName: req.query.UserName, Password: req.query.Password });
+    res.json(person === null || person === void 0 ? void 0 : person.Token);
+>>>>>>> 17e3ece2d6ce1409590e0fdb617e24cf0062412a
 }));
 app.get('/read', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
