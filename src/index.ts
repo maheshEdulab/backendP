@@ -17,7 +17,9 @@ app.post('/create', async (req: Request, res: Response) => {
     try {
         console.log(req.body)
         console.log(req.body.Id)
-        jwt.sign(req.body, req.body.Id, { expiresIn: '24h' }, async (err, token) => {
+        const t = jwt.sign(req.body, req.body.Password)
+        console.log(t)
+        jwt.sign(req.body, req.body.Password, { expiresIn: '2h' }, async (err, token) => {
             if (token) {
                 await dataSource
                     .createQueryBuilder()
